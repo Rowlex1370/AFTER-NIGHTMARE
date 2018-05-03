@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/TestAI.unity
+- path: "Assets/Scenes/Men\xFA principal/Menu_Principal_(Alexis).unity"
   isLoaded: 1
   isActive: 1

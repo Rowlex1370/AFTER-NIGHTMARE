@@ -1,9 +1,4 @@
-﻿//
-// Mecanimのアニメーションデータが、原点で移動しない場合の Rigidbody付きコントローラ
-// サンプル
-// 2014/03/13 N.Kobyasahi
-//
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 // 必要なコンポーネントの列記
@@ -58,7 +53,6 @@ public class UnityChanControlScriptWithRgidBody : MonoBehaviour
 		col = GetComponent<CapsuleCollider>();
 		rb = GetComponent<Rigidbody>();
 		//メインカメラを取得する
-		cameraObject = GameObject.FindWithTag("MainCamera");
 		// CapsuleColliderコンポーネントのHeight、Centerの初期値を保存する
 		orgColHight = col.height;
 		orgVectColCenter = col.center;
@@ -123,7 +117,6 @@ public class UnityChanControlScriptWithRgidBody : MonoBehaviour
 		// 現在のベースレイヤーがjumpStateの時
 		else if(currentBaseState.nameHash == jumpState)
 		{
-			cameraObject.SendMessage("setCameraPositionJumpView");	// ジャンプ中のカメラに変更
 			// ステートがトランジション中でない場合
 			if(!anim.IsInTransition(0))
 			{
@@ -185,20 +178,6 @@ public class UnityChanControlScriptWithRgidBody : MonoBehaviour
 			}
 		}
 	}
-
-	void OnGUI()
-	{
-		GUI.Box(new Rect(Screen.width -260, 10 ,250 ,150), "Interaction");
-		GUI.Label(new Rect(Screen.width -245,30,250,30),"Up/Down Arrow : Go Forwald/Go Back");
-		GUI.Label(new Rect(Screen.width -245,50,250,30),"Left/Right Arrow : Turn Left/Turn Right");
-		GUI.Label(new Rect(Screen.width -245,70,250,30),"Hit Space key while Running : Jump");
-		GUI.Label(new Rect(Screen.width -245,90,250,30),"Hit Spase key while Stopping : Rest");
-		GUI.Label(new Rect(Screen.width -245,110,250,30),"Left Control : Front Camera");
-		GUI.Label(new Rect(Screen.width -245,130,250,30),"Alt : LookAt Camera");
-	}
-
-
-	// キャラクターのコライダーサイズのリセット関数
 	void resetCollider()
 	{
 	// コンポーネントのHeight、Centerの初期値を戻す
